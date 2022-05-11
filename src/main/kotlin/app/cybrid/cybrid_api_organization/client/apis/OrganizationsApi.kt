@@ -16,8 +16,9 @@ interface OrganizationsApi {
      * Responses:
      *  - 200: organization found
      *  - 404: organization not found
-     *  - 401: Invalid subject
+     *  - 401: Invalid responses - invalid subject, Authentication failed
      *  - 403: Invalid scope
+     *  - 400: Malformed Authentication Header
      *
      * @param organizationGuid Identifier for the organization. 
      * @return [OrganizationOrganizationModel]
@@ -31,8 +32,8 @@ interface OrganizationsApi {
      * Responses:
      *  - 200: organization found
      *  - 404: organization not found
-     *  - 400: invalid organization name length
-     *  - 401: Invalid subject
+     *  - 400: Invalid responses - malformed authentication header, invalid organization name length
+     *  - 401: Invalid responses - invalid subject, authentication failed
      *  - 403: Invalid scope
      *
      * @param organizationGuid Identifier for the organization. 
