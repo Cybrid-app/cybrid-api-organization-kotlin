@@ -15,10 +15,9 @@ interface OrganizationsApi {
      * Retrieve an organization.  Required scope: **organizations:read**
      * Responses:
      *  - 200: organization found
-     *  - 404: organization not found
+     *  - 400: Invalid requests - Malformed Authentication Header
      *  - 401: Unauthorized - Authentication failed, invalid subject
      *  - 403: Invalid scope
-     *  - 400: Invalid requests - Malformed Authentication Header
      *
      * @param organizationGuid Identifier for the organization. 
      * @return [OrganizationOrganizationModel]
@@ -31,7 +30,6 @@ interface OrganizationsApi {
      * Update an organization.  Required scope: **organizations:write**
      * Responses:
      *  - 200: organization found
-     *  - 404: organization not found
      *  - 400: Invalid requests - malformed authentication header, invalid organization name length
      *  - 401: Unauthorized - Authentication failed, invalid subject
      *  - 403: Invalid scope
