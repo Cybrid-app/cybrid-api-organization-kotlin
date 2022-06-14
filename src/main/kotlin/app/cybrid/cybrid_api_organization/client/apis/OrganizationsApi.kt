@@ -19,7 +19,7 @@ interface OrganizationsApi {
      *  - 401: Unauthorized - Authentication failed, invalid subject
      *  - 403: Invalid scope
      *
-     * @param organizationGuid Identifier for the organization. 
+     * @param organizationGuid Identifier for the organization.
      * @return [OrganizationOrganizationModel]
      */
     @GET("api/organizations/{organization_guid}")
@@ -34,8 +34,8 @@ interface OrganizationsApi {
      *  - 401: Unauthorized - Authentication failed, invalid subject
      *  - 403: Invalid scope
      *
-     * @param organizationGuid Identifier for the organization. 
-     * @param patchOrganizationOrganizationModel  
+     * @param organizationGuid Identifier for the organization.
+     * @param patchOrganizationOrganizationModel 
      * @return [OrganizationOrganizationModel]
      */
     @PATCH("api/organizations/{organization_guid}")
