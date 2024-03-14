@@ -26,14 +26,64 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * @param name Name for the organization.
+ * @param guid Auto-generated unique identifier for the subscription.
+ * @param name Name provided for the subscription.
+ * @param type The type of subscription.
+ * @param url The url for the subscription.
+ * @param environment The environment that the subscription is configured for; one of sandbox or production.
+ * @param state The state of the subscription; one of storing, completed, failed, deleting, or deleted.
+ * @param failureCode The failure code of a subscription (if any)
+ * @param createdAt ISO8601 datetime the record was created at.
+ * @param updatedAt ISO8601 datetime the record was last updated at.
  */
 
-data class PatchOrganizationOrganizationModel (
+data class SubscriptionOrganizationModel (
 
-    /* Name for the organization. */
+    /* Auto-generated unique identifier for the subscription. */
+    @SerializedName("guid")
+    val guid: kotlin.String,
+
+    /* Name provided for the subscription. */
     @SerializedName("name")
-    val name: kotlin.String
+    val name: kotlin.String,
 
-)
+    /* The type of subscription. */
+    @SerializedName("type")
+    val type: SubscriptionOrganizationModel.Type,
+
+    /* The url for the subscription. */
+    @SerializedName("url")
+    val url: kotlin.String,
+
+    /* The environment that the subscription is configured for; one of sandbox or production. */
+    @SerializedName("environment")
+    val environment: kotlin.String,
+
+    /* The state of the subscription; one of storing, completed, failed, deleting, or deleted. */
+    @SerializedName("state")
+    val state: kotlin.String,
+
+    /* The failure code of a subscription (if any) */
+    @SerializedName("failure_code")
+    val failureCode: kotlin.String? = null,
+
+    /* ISO8601 datetime the record was created at. */
+    @SerializedName("created_at")
+    val createdAt: java.time.OffsetDateTime? = null,
+
+    /* ISO8601 datetime the record was last updated at. */
+    @SerializedName("updated_at")
+    val updatedAt: java.time.OffsetDateTime? = null
+
+) {
+
+    /**
+     * The type of subscription.
+     *
+     * Values: webhook
+     */
+    enum class Type(val value: kotlin.String) {
+        @SerializedName(value = "webhook") webhook("webhook");
+    }
+}
 

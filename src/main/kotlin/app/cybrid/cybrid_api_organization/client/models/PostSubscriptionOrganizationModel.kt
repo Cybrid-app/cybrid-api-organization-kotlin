@@ -26,14 +26,39 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * @param name Name for the organization.
+ * @param name Name provided for the subscription.
+ * @param type The type of subscription.
+ * @param url The url for the subscription.
+ * @param environment The environment that the subscription is configured for; one of sandbox or production.
  */
 
-data class PatchOrganizationOrganizationModel (
+data class PostSubscriptionOrganizationModel (
 
-    /* Name for the organization. */
+    /* Name provided for the subscription. */
     @SerializedName("name")
-    val name: kotlin.String
+    val name: kotlin.String,
 
-)
+    /* The type of subscription. */
+    @SerializedName("type")
+    val type: PostSubscriptionOrganizationModel.Type,
+
+    /* The url for the subscription. */
+    @SerializedName("url")
+    val url: kotlin.String,
+
+    /* The environment that the subscription is configured for; one of sandbox or production. */
+    @SerializedName("environment")
+    val environment: kotlin.String
+
+) {
+
+    /**
+     * The type of subscription.
+     *
+     * Values: webhook
+     */
+    enum class Type(val value: kotlin.String) {
+        @SerializedName(value = "webhook") webhook("webhook");
+    }
+}
 

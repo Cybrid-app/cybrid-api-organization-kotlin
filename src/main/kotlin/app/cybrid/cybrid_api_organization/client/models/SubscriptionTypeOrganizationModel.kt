@@ -26,14 +26,38 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * @param name Name for the organization.
+ * Values: webhook
  */
 
-data class PatchOrganizationOrganizationModel (
+enum class SubscriptionTypeOrganizationModel(val value: kotlin.String) {
 
-    /* Name for the organization. */
-    @SerializedName("name")
-    val name: kotlin.String
+    @SerializedName(value = "webhook")
+    webhook("webhook");
 
-)
+    /**
+     * Override toString() to avoid using the enum variable name as the value, and instead use
+     * the actual value defined in the API spec file.
+     *
+     * This solves a problem when the variable name and its value are different, and ensures that
+     * the client sends the correct enum values to the server always.
+     */
+    override fun toString(): String = value
+
+    companion object {
+        /**
+         * Converts the provided [data] to a [String] on success, null otherwise.
+         */
+        fun encode(data: kotlin.Any?): kotlin.String? = if (data is SubscriptionTypeOrganizationModel) "$data" else null
+
+        /**
+         * Returns a valid [SubscriptionTypeOrganizationModel] for [data], null otherwise.
+         */
+        fun decode(data: kotlin.Any?): SubscriptionTypeOrganizationModel? = data?.let {
+          val normalizedData = "$it".lowercase()
+          values().firstOrNull { value ->
+            it == value || normalizedData == "$value".lowercase()
+          }
+        }
+    }
+}
 

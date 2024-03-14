@@ -20,20 +20,35 @@
 
 package app.cybrid.cybrid_api_organization.client.models
 
+import app.cybrid.cybrid_api_organization.client.models.SubscriptionOrganizationModel
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * 
  *
- * @param name Name for the organization.
+ * @param total The total number of records available.
+ * @param page The page index to retrieve.
+ * @param perPage The number of entities per page to return.
+ * @param objects 
  */
 
-data class PatchOrganizationOrganizationModel (
+data class SubscriptionListOrganizationModel (
 
-    /* Name for the organization. */
-    @SerializedName("name")
-    val name: kotlin.String
+    /* The total number of records available. */
+    @SerializedName("total")
+    val total: java.math.BigDecimal,
+
+    /* The page index to retrieve. */
+    @SerializedName("page")
+    val page: java.math.BigDecimal,
+
+    /* The number of entities per page to return. */
+    @SerializedName("per_page")
+    val perPage: java.math.BigDecimal,
+
+    @SerializedName("objects")
+    val objects: kotlin.collections.List<SubscriptionOrganizationModel>
 
 )
 

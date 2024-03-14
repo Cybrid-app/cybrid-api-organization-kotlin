@@ -26,14 +26,50 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * @param name Name for the organization.
+ * Values: storing,completed,failed,deleting,deleted
  */
 
-data class PatchOrganizationOrganizationModel (
+enum class SubscriptionStateOrganizationModel(val value: kotlin.String) {
 
-    /* Name for the organization. */
-    @SerializedName("name")
-    val name: kotlin.String
+    @SerializedName(value = "storing")
+    storing("storing"),
 
-)
+    @SerializedName(value = "completed")
+    completed("completed"),
+
+    @SerializedName(value = "failed")
+    failed("failed"),
+
+    @SerializedName(value = "deleting")
+    deleting("deleting"),
+
+    @SerializedName(value = "deleted")
+    deleted("deleted");
+
+    /**
+     * Override toString() to avoid using the enum variable name as the value, and instead use
+     * the actual value defined in the API spec file.
+     *
+     * This solves a problem when the variable name and its value are different, and ensures that
+     * the client sends the correct enum values to the server always.
+     */
+    override fun toString(): String = value
+
+    companion object {
+        /**
+         * Converts the provided [data] to a [String] on success, null otherwise.
+         */
+        fun encode(data: kotlin.Any?): kotlin.String? = if (data is SubscriptionStateOrganizationModel) "$data" else null
+
+        /**
+         * Returns a valid [SubscriptionStateOrganizationModel] for [data], null otherwise.
+         */
+        fun decode(data: kotlin.Any?): SubscriptionStateOrganizationModel? = data?.let {
+          val normalizedData = "$it".lowercase()
+          values().firstOrNull { value ->
+            it == value || normalizedData == "$value".lowercase()
+          }
+        }
+    }
+}
 
