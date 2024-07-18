@@ -212,4 +212,5 @@ Class | Method | HTTP request | Description
   - organizations:read: organizations read
   - subscriptions:write: subscriptions write
   - subscriptions:read: subscriptions read
+  - subscriptions:execute: subscriptions execute
 

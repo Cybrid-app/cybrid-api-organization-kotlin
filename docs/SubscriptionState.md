@@ -10,9 +10,5 @@
 
     * `failed` (value: `"failed"`)
 
-    * `deleting` (value: `"deleting"`)
-
-    * `deleted` (value: `"deleted"`)
-
 
 

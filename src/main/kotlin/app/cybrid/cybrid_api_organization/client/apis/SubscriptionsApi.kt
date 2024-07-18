@@ -29,16 +29,16 @@ interface SubscriptionsApi {
      * Delete Subscription
      * Deletes a subscription.  Required scope: **subscriptions:execute**
      * Responses:
-     *  - 200: Subscription deleted
+     *  - 204: Subscription deleted
      *  - 401: Unauthorized - Authentication failed, 
      *  - 403: Invalid scope
      *  - 404: Subscription not found
      *
      * @param subscriptionGuid Identifier for the subscription.
-     * @return [SubscriptionOrganizationModel]
+     * @return [Unit]
      */
     @DELETE("api/subscriptions/{subscription_guid}")
-    suspend fun deleteSubscription(@Path("subscription_guid") subscriptionGuid: kotlin.String): Response<SubscriptionOrganizationModel>
+    suspend fun deleteSubscription(@Path("subscription_guid") subscriptionGuid: kotlin.String): Response<Unit>
 
     /**
      * Get Subscription 

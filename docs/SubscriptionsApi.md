@@ -71,7 +71,7 @@ val webService = apiClient.createWebservice(SubscriptionsApi::class.java)
 val subscriptionGuid : kotlin.String = subscriptionGuid_example // kotlin.String | Identifier for the subscription.
 
 launch(Dispatchers.IO) {
-    val result : SubscriptionOrganizationModel = webService.deleteSubscription(subscriptionGuid)
+    webService.deleteSubscription(subscriptionGuid)
 }
 ```
 
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SubscriptionOrganizationModel**](SubscriptionOrganizationModel.md)
+null (empty response body)
 
 ### Authorization
 
