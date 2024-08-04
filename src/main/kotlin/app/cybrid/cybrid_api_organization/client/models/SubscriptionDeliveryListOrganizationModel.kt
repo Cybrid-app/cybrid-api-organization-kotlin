@@ -20,44 +20,35 @@
 
 package app.cybrid.cybrid_api_organization.client.models
 
+import app.cybrid.cybrid_api_organization.client.models.SubscriptionDeliveryOrganizationModel
 
 import com.google.gson.annotations.SerializedName
 
 /**
  * 
  *
- * Values: webhook
+ * @param total The total number of records available.
+ * @param page The page index to retrieve.
+ * @param perPage The number of entities per page to return.
+ * @param objects 
  */
 
-enum class SubscriptionTypeOrganizationModel(val value: kotlin.String) {
+data class SubscriptionDeliveryListOrganizationModel (
 
-    @SerializedName(value = "webhook")
-    webhook("webhook");
+    /* The total number of records available. */
+    @SerializedName("total")
+    val total: java.math.BigDecimal,
 
-    /**
-     * Override toString() to avoid using the enum variable name as the value, and instead use
-     * the actual value defined in the API spec file.
-     *
-     * This solves a problem when the variable name and its value are different, and ensures that
-     * the client sends the correct enum values to the server always.
-     */
-    override fun toString(): String = value
+    /* The page index to retrieve. */
+    @SerializedName("page")
+    val page: java.math.BigDecimal,
 
-    companion object {
-        /**
-         * Converts the provided [data] to a [String] on success, null otherwise.
-         */
-        fun encode(data: kotlin.Any?): kotlin.String? = if (data is SubscriptionTypeOrganizationModel) "$data" else null
+    /* The number of entities per page to return. */
+    @SerializedName("per_page")
+    val perPage: java.math.BigDecimal,
 
-        /**
-         * Returns a valid [SubscriptionTypeOrganizationModel] for [data], null otherwise.
-         */
-        fun decode(data: kotlin.Any?): SubscriptionTypeOrganizationModel? = data?.let {
-          val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
-            it == value || normalizedData == "$value".lowercase()
-          }
-        }
-    }
-}
+    @SerializedName("objects")
+    val objects: kotlin.collections.List<SubscriptionDeliveryOrganizationModel>
+
+)
 

@@ -112,9 +112,10 @@ val apiClient = ApiClient()
 apiClient.setBearerToken("TOKEN")
 val webService = apiClient.createWebservice(SubscriptionsApi::class.java)
 val subscriptionGuid : kotlin.String = subscriptionGuid_example // kotlin.String | Identifier for the subscription.
+val includeSigningKey : kotlin.Boolean = true // kotlin.Boolean | Flag to include signing key in the response.
 
 launch(Dispatchers.IO) {
-    val result : SubscriptionOrganizationModel = webService.getSubscription(subscriptionGuid)
+    val result : SubscriptionOrganizationModel = webService.getSubscription(subscriptionGuid, includeSigningKey)
 }
 ```
 
@@ -123,6 +124,7 @@ launch(Dispatchers.IO) {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **subscriptionGuid** | **kotlin.String**| Identifier for the subscription. |
+ **includeSigningKey** | **kotlin.Boolean**| Flag to include signing key in the response. | [optional]
 
 ### Return type
 
@@ -157,9 +159,10 @@ val webService = apiClient.createWebservice(SubscriptionsApi::class.java)
 val page : java.math.BigDecimal = 56 // java.math.BigDecimal | The page index to retrieve.
 val perPage : java.math.BigDecimal = 56 // java.math.BigDecimal | The number of entities per page to return.
 val guid : kotlin.String = guid_example // kotlin.String | Comma separated subscription_guids to list subscriptions for.
+val includeSigningKey : kotlin.Boolean = true // kotlin.Boolean | Flag to include signing key in the response.
 
 launch(Dispatchers.IO) {
-    val result : SubscriptionListOrganizationModel = webService.listSubscriptions(page, perPage, guid)
+    val result : SubscriptionListOrganizationModel = webService.listSubscriptions(page, perPage, guid, includeSigningKey)
 }
 ```
 
@@ -170,6 +173,7 @@ Name | Type | Description  | Notes
  **page** | **java.math.BigDecimal**| The page index to retrieve. | [optional]
  **perPage** | **java.math.BigDecimal**| The number of entities per page to return. | [optional]
  **guid** | **kotlin.String**| Comma separated subscription_guids to list subscriptions for. | [optional]
+ **includeSigningKey** | **kotlin.Boolean**| Flag to include signing key in the response. | [optional]
 
 ### Return type
 

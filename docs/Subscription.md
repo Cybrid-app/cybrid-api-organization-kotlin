@@ -10,6 +10,9 @@ Name | Type | Description | Notes
 **url** | **kotlin.String** | The url for the subscription. | 
 **environment** | **kotlin.String** | The environment that the subscription is configured for; one of sandbox or production. | 
 **state** | **kotlin.String** | The state of the subscription; one of storing, completed, or failed. | 
+**organizationGuid** | **kotlin.String** | The organization guid for the subscription. |  [optional]
+**signingKey** | **kotlin.String** | Subscription private signing key. |  [optional]
+**deliveriesFailingSince** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | ISO8601 datetime the deliveries started failing. |  [optional]
 **failureCode** | **kotlin.String** | The failure code of a subscription (if any) |  [optional]
 **createdAt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | ISO8601 datetime the record was created at. |  [optional]
 **updatedAt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | ISO8601 datetime the record was last updated at. |  [optional]

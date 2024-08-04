@@ -50,10 +50,11 @@ interface SubscriptionsApi {
      *  - 404: Subscription not found
      *
      * @param subscriptionGuid Identifier for the subscription.
+     * @param includeSigningKey Flag to include signing key in the response. (optional)
      * @return [SubscriptionOrganizationModel]
      */
     @GET("api/subscriptions/{subscription_guid}")
-    suspend fun getSubscription(@Path("subscription_guid") subscriptionGuid: kotlin.String): Response<SubscriptionOrganizationModel>
+    suspend fun getSubscription(@Path("subscription_guid") subscriptionGuid: kotlin.String, @Query("include_signing_key") includeSigningKey: kotlin.Boolean? = null): Response<SubscriptionOrganizationModel>
 
     /**
      * Get subscriptions list
@@ -67,9 +68,10 @@ interface SubscriptionsApi {
      * @param page The page index to retrieve. (optional)
      * @param perPage The number of entities per page to return. (optional)
      * @param guid Comma separated subscription_guids to list subscriptions for. (optional)
+     * @param includeSigningKey Flag to include signing key in the response. (optional)
      * @return [SubscriptionListOrganizationModel]
      */
     @GET("api/subscriptions")
-    suspend fun listSubscriptions(@Query("page") page: java.math.BigDecimal? = null, @Query("per_page") perPage: java.math.BigDecimal? = null, @Query("guid") guid: kotlin.String? = null): Response<SubscriptionListOrganizationModel>
+    suspend fun listSubscriptions(@Query("page") page: java.math.BigDecimal? = null, @Query("per_page") perPage: java.math.BigDecimal? = null, @Query("guid") guid: kotlin.String? = null, @Query("include_signing_key") includeSigningKey: kotlin.Boolean? = null): Response<SubscriptionListOrganizationModel>
 
 }

@@ -70,7 +70,7 @@ curl -X POST https://id.production.cybrid.app/oauth/token -d '{
     \"scope\": \"banks:read banks:write bank_applications:execute accounts:read accounts:execute counterparties:read counterparties:write counterparties:execute customers:read customers:write customers:execute prices:read quotes:execute quotes:read trades:execute trades:read transfers:execute transfers:read external_bank_accounts:read external_bank_accounts:write external_bank_accounts:execute external_wallets:read external_wallets:execute workflows:read workflows:execute deposit_addresses:read deposit_addresses:execute deposit_bank_accounts:read deposit_bank_accounts:execute invoices:read invoices:write invoices:execute identity_verifications:read identity_verifications:write identity_verifications:execute\"
   }' -H \"Content-Type: application/json\"
 
-# When using Organization credentials set `scope` to 'organizations:read organizations:write organization_applications:execute banks:read banks:write banks:execute bank_applications:execute users:read users:execute counterparties:read customers:read accounts:read prices:read quotes:execute quotes:read trades:execute trades:read transfers:read transfers:execute external_bank_accounts:read external_wallets:read workflows:read deposit_addresses:read deposit_bank_accounts:read invoices:read subscriptions:read subscriptions:write subscriptions:execute identity_verifications:read'
+# When using Organization credentials set `scope` to 'organizations:read organizations:write organization_applications:execute banks:read banks:write banks:execute bank_applications:execute users:read users:execute counterparties:read customers:read accounts:read prices:read quotes:execute quotes:read trades:execute trades:read transfers:read transfers:execute external_bank_accounts:read external_wallets:read workflows:read deposit_addresses:read deposit_bank_accounts:read invoices:read subscriptions:read subscriptions:write subscriptions:execute subscription_events:read subscription_events:execute identity_verifications:read'
 ```
 <font color=\"orange\">**⚠️ Note: The above curl will create a bearer token with full scope access. Delete scopes if you'd like to restrict access.**</font>
 
@@ -187,6 +187,11 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *OrganizationsApi* | [**getOrganization**](docs/OrganizationsApi.md#getorganization) | **GET** api/organizations/{organization_guid} | Get organization
 *OrganizationsApi* | [**updateOrganization**](docs/OrganizationsApi.md#updateorganization) | **PATCH** api/organizations/{organization_guid} | Patch organization
+*SubscriptionDeliveriesApi* | [**createSubscriptionDelivery**](docs/SubscriptionDeliveriesApi.md#createsubscriptiondelivery) | **POST** api/subscription_deliveries/ | Create SubscriptionDelivery
+*SubscriptionDeliveriesApi* | [**getSubscriptionDelivery**](docs/SubscriptionDeliveriesApi.md#getsubscriptiondelivery) | **GET** api/subscription_deliveries/{subscription_delivery_guid} | Get Subscription Delivery 
+*SubscriptionDeliveriesApi* | [**listSubscriptionDeliveries**](docs/SubscriptionDeliveriesApi.md#listsubscriptiondeliveries) | **GET** api/subscription_deliveries | Get subscription deliveries list
+*SubscriptionEventsApi* | [**getSubscriptionEvent**](docs/SubscriptionEventsApi.md#getsubscriptionevent) | **GET** api/subscription_events/{subscription_event_guid} | Get Subscription Event 
+*SubscriptionEventsApi* | [**listSubscriptionEvents**](docs/SubscriptionEventsApi.md#listsubscriptionevents) | **GET** api/subscription_events | Get subscription events list
 *SubscriptionsApi* | [**createSubscription**](docs/SubscriptionsApi.md#createsubscription) | **POST** api/subscriptions/ | Create Subscription
 *SubscriptionsApi* | [**deleteSubscription**](docs/SubscriptionsApi.md#deletesubscription) | **DELETE** api/subscriptions/{subscription_guid} | Delete Subscription
 *SubscriptionsApi* | [**getSubscription**](docs/SubscriptionsApi.md#getsubscription) | **GET** api/subscriptions/{subscription_guid} | Get Subscription 
@@ -213,4 +218,6 @@ Class | Method | HTTP request | Description
   - subscriptions:write: subscriptions write
   - subscriptions:read: subscriptions read
   - subscriptions:execute: subscriptions execute
+  - subscription_events:read: subscription_events read
+  - subscription_events:execute: subscription_events execute
 

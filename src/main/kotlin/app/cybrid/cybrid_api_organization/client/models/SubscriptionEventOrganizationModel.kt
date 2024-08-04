@@ -26,38 +26,44 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * Values: webhook
+ * @param guid Auto-generated unique identifier for the subscription event.
+ * @param eventType The type of the subscription event. One of transfer.created or transfer.updated.
+ * @param objectGuid The object guid for which the event is received.
+ * @param organizationGuid The organization guid of the subscription event.
+ * @param createdAt ISO8601 datetime the record was created at.
+ * @param environment The environment that the subscription event is configured for; one of sandbox or production.
+ * @param updatedAt ISO8601 datetime the record was last updated at.
  */
 
-enum class SubscriptionTypeOrganizationModel(val value: kotlin.String) {
+data class SubscriptionEventOrganizationModel (
 
-    @SerializedName(value = "webhook")
-    webhook("webhook");
+    /* Auto-generated unique identifier for the subscription event. */
+    @SerializedName("guid")
+    val guid: kotlin.String,
 
-    /**
-     * Override toString() to avoid using the enum variable name as the value, and instead use
-     * the actual value defined in the API spec file.
-     *
-     * This solves a problem when the variable name and its value are different, and ensures that
-     * the client sends the correct enum values to the server always.
-     */
-    override fun toString(): String = value
+    /* The type of the subscription event. One of transfer.created or transfer.updated. */
+    @SerializedName("event_type")
+    val eventType: kotlin.String,
 
-    companion object {
-        /**
-         * Converts the provided [data] to a [String] on success, null otherwise.
-         */
-        fun encode(data: kotlin.Any?): kotlin.String? = if (data is SubscriptionTypeOrganizationModel) "$data" else null
+    /* The object guid for which the event is received. */
+    @SerializedName("object_guid")
+    val objectGuid: kotlin.String,
 
-        /**
-         * Returns a valid [SubscriptionTypeOrganizationModel] for [data], null otherwise.
-         */
-        fun decode(data: kotlin.Any?): SubscriptionTypeOrganizationModel? = data?.let {
-          val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
-            it == value || normalizedData == "$value".lowercase()
-          }
-        }
-    }
-}
+    /* The organization guid of the subscription event. */
+    @SerializedName("organization_guid")
+    val organizationGuid: kotlin.String,
+
+    /* ISO8601 datetime the record was created at. */
+    @SerializedName("created_at")
+    val createdAt: java.time.OffsetDateTime,
+
+    /* The environment that the subscription event is configured for; one of sandbox or production. */
+    @SerializedName("environment")
+    val environment: kotlin.String? = null,
+
+    /* ISO8601 datetime the record was last updated at. */
+    @SerializedName("updated_at")
+    val updatedAt: java.time.OffsetDateTime? = null
+
+)
 

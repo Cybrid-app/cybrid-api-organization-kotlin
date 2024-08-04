@@ -26,38 +26,77 @@ import com.google.gson.annotations.SerializedName
 /**
  * 
  *
- * Values: webhook
+ * @param guid Auto-generated unique identifier for the subscription delivery.
+ * @param subscriptionEventGuid The subscription event guid of the subscription delivery.
+ * @param subscriptionGuid The subscription guid of the subscription delivery.
+ * @param state The state of the subscription delivery.
+ * @param attemptCount The number of attempts made to deliver the event.
+ * @param response The response of the subscription delivery.
+ * @param nextAttemptAt ISO8601 datetime the next attempt will be made.
+ * @param completedAt ISO8601 datetime the event was delivered.
+ * @param failedAt ISO8601 datetime the event delivery was marked as failed.
+ * @param createdAt ISO8601 datetime the record was created at.
+ * @param updatedAt ISO8601 datetime the record was last updated at.
  */
 
-enum class SubscriptionTypeOrganizationModel(val value: kotlin.String) {
+data class SubscriptionDeliveryOrganizationModel (
 
-    @SerializedName(value = "webhook")
-    webhook("webhook");
+    /* Auto-generated unique identifier for the subscription delivery. */
+    @SerializedName("guid")
+    val guid: kotlin.String,
+
+    /* The subscription event guid of the subscription delivery. */
+    @SerializedName("subscription_event_guid")
+    val subscriptionEventGuid: kotlin.String,
+
+    /* The subscription guid of the subscription delivery. */
+    @SerializedName("subscription_guid")
+    val subscriptionGuid: kotlin.String,
+
+    /* The state of the subscription delivery. */
+    @SerializedName("state")
+    val state: SubscriptionDeliveryOrganizationModel.State,
+
+    /* The number of attempts made to deliver the event. */
+    @SerializedName("attempt_count")
+    val attemptCount: java.math.BigDecimal,
+
+    /* The response of the subscription delivery. */
+    @SerializedName("response")
+    val response: kotlin.String? = null,
+
+    /* ISO8601 datetime the next attempt will be made. */
+    @SerializedName("next_attempt_at")
+    val nextAttemptAt: java.time.OffsetDateTime? = null,
+
+    /* ISO8601 datetime the event was delivered. */
+    @SerializedName("completed_at")
+    val completedAt: java.time.OffsetDateTime? = null,
+
+    /* ISO8601 datetime the event delivery was marked as failed. */
+    @SerializedName("failed_at")
+    val failedAt: java.time.OffsetDateTime? = null,
+
+    /* ISO8601 datetime the record was created at. */
+    @SerializedName("created_at")
+    val createdAt: java.time.OffsetDateTime? = null,
+
+    /* ISO8601 datetime the record was last updated at. */
+    @SerializedName("updated_at")
+    val updatedAt: java.time.OffsetDateTime? = null
+
+) {
 
     /**
-     * Override toString() to avoid using the enum variable name as the value, and instead use
-     * the actual value defined in the API spec file.
+     * The state of the subscription delivery.
      *
-     * This solves a problem when the variable name and its value are different, and ensures that
-     * the client sends the correct enum values to the server always.
+     * Values: storing,completed,failing,failed
      */
-    override fun toString(): String = value
-
-    companion object {
-        /**
-         * Converts the provided [data] to a [String] on success, null otherwise.
-         */
-        fun encode(data: kotlin.Any?): kotlin.String? = if (data is SubscriptionTypeOrganizationModel) "$data" else null
-
-        /**
-         * Returns a valid [SubscriptionTypeOrganizationModel] for [data], null otherwise.
-         */
-        fun decode(data: kotlin.Any?): SubscriptionTypeOrganizationModel? = data?.let {
-          val normalizedData = "$it".lowercase()
-          values().firstOrNull { value ->
-            it == value || normalizedData == "$value".lowercase()
-          }
-        }
+    enum class State(val value: kotlin.String) {
+        @SerializedName(value = "storing") storing("storing"),
+        @SerializedName(value = "completed") completed("completed"),
+        @SerializedName(value = "failing") failing("failing"),
+        @SerializedName(value = "failed") failed("failed");
     }
 }
 
